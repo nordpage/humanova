@@ -1,0 +1,54 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1741022035
+icon.svg::CompressedTexture2D::6743823695843928332::1741001969::1741001974::1::::<><>::
+Main.tscn::PackedScene::6788644393629488827::1741021662::0::1::::<><>::uid://f00cn8q7fvuy::::res://Scenes/player.tscn<>uid://m1crlvmlwssw::::res://Scenes/HUD.tscn<>res://Scripts/AtmosphericLighting.gd
+::res://augmentaries/::1741017659
+night_vision_lut.tres::GradientTexture2D::1396659061069656138::1741017659::0::1::::<><>::
+::res://cyber-UI/::1741022017
+cooling1.png::CompressedTexture2D::3474588639516461819::1741018074::1741018134::1::::<><>::
+cooling.png::CompressedTexture2D::3821016632614109894::1741018074::1741018134::1::::<><>::
+dnk1.png::CompressedTexture2D::2348434150707656656::1741018074::1741018134::1::::<><>::
+dnk.png::CompressedTexture2D::1988281240289573022::1741018074::1741018134::1::::<><>::
+hud1.png::CompressedTexture2D::4421861378354392317::1741018074::1741018134::1::::<><>::
+hud2.png::CompressedTexture2D::3624199287262410404::1741018074::1741018134::1::::<><>::
+hud12.png::CompressedTexture2D::1333344234645111839::1741018074::1741018134::1::::<><>::
+hud21.png::CompressedTexture2D::8699034203655536949::1741018074::1741018134::1::::<><>::
+limbs1.png::CompressedTexture2D::1304874667042600259::1741018074::1741018134::1::::<><>::
+limbs.png::CompressedTexture2D::1564122759933645652::1741018074::1741018134::1::::<><>::
+memory1.png::CompressedTexture2D::8399164670721326529::1741018074::1741018134::1::::<><>::
+memory.png::CompressedTexture2D::4806283345522820251::1741018074::1741018134::1::::<><>::
+mental1.png::CompressedTexture2D::7334451755431560810::1741018074::1741018134::1::::<><>::
+mental.png::CompressedTexture2D::8647226204746192103::1741018074::1741018134::1::::<><>::
+self repair1.png::CompressedTexture2D::583965365519748790::1741018074::1741018134::1::::<><>::
+self repair.png::CompressedTexture2D::1580170900643065921::1741018074::1741018134::1::::<><>::
+sensory1.png::CompressedTexture2D::897212515400471789::1741018074::1741018134::1::::<><>::
+sensory.png::CompressedTexture2D::3595721777389003518::1741018074::1741018134::1::::<><>::
+skull1.png::CompressedTexture2D::2620811056060227144::1741018074::1741018134::1::::<><>::
+skull.png::CompressedTexture2D::1686496941037796310::1741018074::1741018134::1::::<><>::
+::res://cyber-UI/UI/::1741018134
+energy.png::CompressedTexture2D::3330857050637594455::1741018074::1741018134::1::::<><>::
+hp bar.png::CompressedTexture2D::7244411630806562415::1741018074::1741018134::1::::<><>::
+hud.png::CompressedTexture2D::6637117987344364185::1741018074::1741018134::1::::<><>::
+mental bar.png::CompressedTexture2D::6659248523858388150::1741018074::1741018134::1::::<><>::
+иконка.png::CompressedTexture2D::668048639620296643::1741018074::1741018134::1::::<><>::
+нагрев1.png::CompressedTexture2D::4283434701611874841::1741018074::1741018134::1::::<><>::
+нагрев2.png::CompressedTexture2D::985472513248759120::1741018074::1741018134::1::::<><>::
+нагрев.png::CompressedTexture2D::209313868323686631::1741018074::1741018134::1::::<><>::
+::res://icons/::1741021989
+::res://icons/augmentations/::1741022035
+cyber_eyes_active.png::CompressedTexture2D::3414561939901399979::1741018074::1741021989::1::::<><>::
+cyber_eyes_passive.png::CompressedTexture2D::1413323729531403192::1741018074::1741021989::1::::<><>::
+neuro_accelerator_active.png::CompressedTexture2D::4242793369080100621::1741018074::1741022027::1::::<><>::
+neuro_accelerator_passive.png::CompressedTexture2D::8808974000194116509::1741018074::1741022035::1::::<><>::
+::res://Scenes/::1741021995
+HUD.tscn::PackedScene::896092348502414178::1741021995::0::1::::<><>::uid://c1tcmmjhvgd02::::res://cyber-UI/UI/hud.png<>res://Scripts/CyberpunkHUD.gd<>uid://dbhinvyku432b::::res://cyber-UI/UI/hp bar.png<>uid://bnpqy1x22ter4::::res://cyber-UI/UI/energy.png<>uid://c141355upykgs::::res://cyber-UI/UI/mental bar.png<>uid://jruws84p6lgd::::res://cyber-UI/UI/иконка.png
+player.tscn::PackedScene::404075893000676348::1741021662::0::1::::<><>::res://Scripts/player.gd
+::res://Scripts/::1741021840
+AtmosphericLighting.gd::GDScript::-1::1741021478::0::1::::AtmosphericLighting<>Node3D<>::
+AugmentationSystem.gd::GDScript::-1::1741014057::0::1::::AugmentationSystem<>Node<>::
+CyberpunkHUD.gd::GDScript::-1::1741021840::0::1::::CyberpunkHUD<>CanvasLayer<>::
+player.gd::GDScript::-1::1741018220::0::1::::<>CharacterBody3D<>::
+::res://shaders/::1741021996
+cyberpunk_post.gdshader::Shader::-1::1741021996::0::1::::<><>::
+psychological.gdshader::Shader::-1::1741021995::0::1::::<><>::
+volumetric_fog.gdshader::Shader::-1::1741021996::0::1::::<><>::

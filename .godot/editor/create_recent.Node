@@ -1,0 +1,14 @@
+AnimationPlayer
+CollisionShape3D
+StaticBody3D
+CSGMesh3D
+Node3D
+MeshInstance3D
+ProgressBar
+Label
+VBoxContainer
+Panel
+CSGCombiner3D
+SpotLight3D
+TextureProgressBar
+TextureRect

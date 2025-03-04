@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://f00cn8q7fvuy"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_0alcr"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_gom2x"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_421x8"]
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_0alcr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_gom2x")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_421x8")
+
+[node name="CamOrigin" type="Node3D" parent="."]
+
+[node name="V" type="Node3D" parent="CamOrigin"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+
+[node name="H" type="Node3D" parent="CamOrigin/V"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CamOrigin/V/H"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5)
+margin = 0.5
+
+[node name="Camera3D" type="Camera3D" parent="CamOrigin/V/H/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)

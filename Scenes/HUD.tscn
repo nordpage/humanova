@@ -1,0 +1,196 @@
+[gd_scene load_steps=10 format=3 uid="uid://m1crlvmlwssw"]
+
+[ext_resource type="Texture2D" uid="uid://c1tcmmjhvgd02" path="res://cyber-UI/UI/hud.png" id="1_26jbt"]
+[ext_resource type="Script" uid="uid://bxag4rs7nll1k" path="res://Scripts/CyberpunkHUD.gd" id="1_hjwd0"]
+[ext_resource type="Texture2D" uid="uid://dbhinvyku432b" path="res://textures/hud/health_bar.png" id="2_8r4id"]
+[ext_resource type="Texture2D" uid="uid://bnpqy1x22ter4" path="res://textures/hud/energy_bar.png" id="3_pegfc"]
+[ext_resource type="Texture2D" uid="uid://c141355upykgs" path="res://textures/hud/sanity_bar.png" id="4_8gurq"]
+[ext_resource type="Texture2D" uid="uid://jruws84p6lgd" path="res://textures/hud/aug_frame.png" id="5_ulq5p"]
+[ext_resource type="Texture2D" uid="uid://c8nmsmral6ox" path="res://textures/hud/heat_bg.png" id="7_nfm57"]
+[ext_resource type="Texture2D" uid="uid://obmuaddaf417" path="res://textures/hud/heat_fill.png" id="8_b5b84"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8cv72"]
+texture = ExtResource("1_26jbt")
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_hjwd0")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -126.0
+offset_right = 357.0
+offset_bottom = -10.0
+grow_vertical = 0
+
+[node name="Item" type="TextureRect" parent="Control/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_ulq5p")
+
+[node name="Item2" type="TextureRect" parent="Control/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_ulq5p")
+
+[node name="Item3" type="TextureRect" parent="Control/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_ulq5p")
+
+[node name="Control2" type="Control" parent="Control"]
+anchors_preset = 0
+offset_right = 616.0
+offset_bottom = 160.0
+
+[node name="Panel" type="Panel" parent="Control/Control2"]
+layout_mode = 0
+offset_top = 10.0
+offset_right = 616.0
+offset_bottom = 163.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_8cv72")
+
+[node name="HP" type="TextureProgressBar" parent="Control/Control2/Panel"]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 27.0
+offset_right = 435.0
+offset_bottom = 64.0
+value = 100.0
+texture_progress = ExtResource("2_8r4id")
+
+[node name="Energy" type="TextureProgressBar" parent="Control/Control2/Panel"]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 75.0
+offset_right = 442.0
+offset_bottom = 99.0
+value = 100.0
+texture_progress = ExtResource("3_pegfc")
+
+[node name="Mental" type="TextureProgressBar" parent="Control/Control2/Panel"]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 111.0
+offset_right = 433.0
+offset_bottom = 135.0
+value = 100.0
+texture_progress = ExtResource("4_8gurq")
+
+[node name="HeatContainer" type="Control" parent="Control/Control2"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -17.0
+offset_right = 139.0
+offset_bottom = 121.0
+grow_vertical = 0
+
+[node name="heat_back" type="TextureRect" parent="Control/Control2/HeatContainer"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("7_nfm57")
+
+[node name="HeatMeter" type="TextureProgressBar" parent="Control/Control2/HeatContainer"]
+layout_mode = 0
+offset_right = 139.0
+offset_bottom = 138.0
+texture_progress = ExtResource("8_b5b84")
+
+[node name="HeatValue" type="Label" parent="Control/Control2/HeatContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.5
+offset_top = -31.5
+offset_right = -9.5
+offset_bottom = -8.5
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+
+[node name="NotificationPanel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -400.0
+offset_bottom = 70.0
+grow_horizontal = 0
+
+[node name="NotificationLabel" type="Label" parent="Control/NotificationPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -190.0
+offset_top = -11.5
+offset_right = 190.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+autowrap_mode = 2
+
+[node name="ObjectivePanel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -400.0
+offset_top = -70.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="ObjectiveLabel" type="Label" parent="Control/ObjectivePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -190.0
+offset_top = -11.5
+offset_right = 190.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+autowrap_mode = 2
+
+[node name="Interaction" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -30.0
+offset_right = 75.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InteractionPrompt" type="Label" parent="Control/Interaction"]
+layout_mode = 2
+
+[node name="InteractionProgress" type="ProgressBar" parent="Control/Interaction"]
+layout_mode = 2

@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://f00cn8q7fvuy"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_0alcr"]
+[ext_resource type="Shader" path="res://shaders/psychological.gdshader" id="2_qlycu"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_gom2x"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_421x8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g4eh3"]
+shader = ExtResource("2_qlycu")
+shader_parameter/distortion_intensity = 0.0
+shader_parameter/aberration_intensity = 0.0
+shader_parameter/vignette_intensity = 0.3
+shader_parameter/grain_intensity = 0.0
+shader_parameter/hallucination_intensity = 0.0
+shader_parameter/time_scale = 1.0
+shader_parameter/tint_color = Color(1, 1, 1, 1)
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_0alcr")
+max_y_angle = 90.0
+min_y_angle = -90.0
+max_x_angle = 25.0
+min_x_angle = -25.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_gom2x")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_421x8")
+
+[node name="CamOrigin" type="Node3D" parent="."]
+
+[node name="V" type="Node3D" parent="CamOrigin"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, 0)
+
+[node name="H" type="Node3D" parent="CamOrigin/V"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CamOrigin/V/H"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5)
+margin = 0.5
+
+[node name="Camera3D" type="Camera3D" parent="CamOrigin/V/H/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_g4eh3")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
