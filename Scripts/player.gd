@@ -33,7 +33,7 @@ var random = RandomNumberGenerator.new()
 # Система аугментаций
 var augmentation_system: AugmentationSystem
 var current_interactive_object = null
-var interaction_ray_length = 2.0  # Дистанция проверки интерактивных объектов
+var interaction_ray_length = 10.0  # Дистанция проверки интерактивных объектов
 
 # Физика
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -185,12 +185,16 @@ func _physics_process(delta):
 	# НЕ поворачиваем персонажа - он всегда обращен в одном направлении
 	# self.rotation.y = deg_to_rad(current_y_angle)
 	var space_state = get_world_3d().direct_space_state
-	var camera_global_position = camera.global_position
-	var ray_end = camera_global_position + -camera.global_transform.basis.z * interaction_ray_length
+	var ray_start = camera.global_position
+	# Важная строка - берём направление камеры
+	var ray_direction = -camera.global_transform.basis.z  # Z-ось камеры указывает "вперёд"
+	var ray_end = ray_start + ray_direction * interaction_ray_length
 	
-	var query = PhysicsRayQueryParameters3D.create(camera_global_position, ray_end)
-	query.exclude = [self]  # Исключаем самого игрока
-	query.collision_mask = 4
+	update_debug_ray(ray_start, ray_end)
+
+	var query = PhysicsRayQueryParameters3D.create(ray_start, ray_end)
+	query.exclude = [self]
+	query.collision_mask = 4  #Слой 3 для интерактивных объектов
 	
 	var result = space_state.intersect_ray(query)
 	
@@ -218,22 +222,29 @@ func _physics_process(delta):
 		else:
 			hide_interaction_prompt()
 			
+	# Замените код отладки (Input.is_action_just_pressed("debug"))
 	if Input.is_action_just_pressed("debug"):
 		print("Current interactive object: ", current_interactive_object)
 		print("Ray length: ", interaction_ray_length)
 		print("Camera position: ", camera.global_position)
 		
 		# Выполнить ручной рейкаст и вывести все результаты
-		var space_state = get_world_3d().direct_space_state
-		var ray_end = camera.global_position + -camera.global_transform.basis.z * 10.0  # Увеличиваем дистанцию
-		var query = PhysicsRayQueryParameters3D.create(camera.global_position, ray_end)
-		query.exclude = [self]
-		query.collision_mask = 0xFFFFFFFF  # Проверяем все слои
-		var result = space_state.intersect_ray(query)
-		print("Debug raycast hit: ", result)
-		if result and result.collider:
-			print("Collider: ", result.collider)
-			print("Collider parent: ", result.collider.get_parent())
+		var debug_space_state = get_world_3d().direct_space_state
+		var debug_ray_end = camera.global_position + -camera.global_transform.basis.z * 10.0
+		var debug_query = PhysicsRayQueryParameters3D.create(camera.global_position, debug_ray_end)
+		debug_query.exclude = [self]
+		debug_query.collision_mask = 0xFFFFFFFF  # Проверяем все слои
+		var debug_result = debug_space_state.intersect_ray(debug_query)
+		print("Debug raycast hit: ", debug_result)
+		if debug_result and debug_result.collider:
+			print("Collider: ", debug_result.collider)
+			print("Collider parent: ", debug_result.collider.get_parent())
+			
+				# В отладочном коде
+		print("Ray direction: ", (-camera.global_transform.basis.z).normalized())
+		print("Camera global transform: ", camera.global_transform)
+		print("Collision mask: ", debug_query.collision_mask)
+		# В конце _physics_process
 
 func setup_environment_effects():
 	var world_env = WorldEnvironment.new()
@@ -256,6 +267,41 @@ func setup_environment_effects():
 	env.set("adjustment/brightness", 1.0)
 	env.set("adjustment/contrast", 1.0)
 	env.set("adjustment/saturation", 1.0)
+	
+# В конце _physics_process
+func update_debug_ray(start, end):
+	var debug_ray = get_node_or_null("DebugRay")
+	
+	if not debug_ray:
+		debug_ray = MeshInstance3D.new()
+		debug_ray.name = "DebugRay"
+		add_child(debug_ray)
+		
+		# Создаем материал для луча
+		var material = StandardMaterial3D.new()
+		material.albedo_color = Color(1.0, 0.0, 0.0)
+		material.emission_enabled = true
+		material.emission = Color(1.0, 0.0, 0.0)
+		debug_ray.material_override = material
+	
+	# Создаем меш для линии
+	var mesh = CylinderMesh.new()
+	mesh.top_radius = 0.05
+	mesh.bottom_radius = 0.05
+	
+	# Рассчитываем длину и ориентацию
+	var direction = end - start
+	var length = direction.length()
+	mesh.height = length
+	
+	debug_ray.mesh = mesh
+	
+	# Устанавливаем позицию и ориентацию
+	debug_ray.global_position = start + direction/2
+	
+	# Нужно определить ориентацию на основе направления
+	debug_ray.look_at(end, Vector3.UP)
+	debug_ray.rotate_object_local(Vector3(1, 0, 0), PI/2)
 
 func update_camera_shake(delta):
 	if shake_time > 0:

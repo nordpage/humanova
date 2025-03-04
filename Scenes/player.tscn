@@ -9,7 +9,6 @@
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_0alcr")
-sens = null
 max_y_angle = 90.0
 min_y_angle = -90.0
 max_x_angle = 25.0
